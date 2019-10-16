@@ -25,6 +25,12 @@ class TasksController < ApplicationController
     redirect_to @task if @task.update_attributes(task_params)
   end
 
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+    redirect_to tasks_url
+  end
+
   private
 
   def task_params

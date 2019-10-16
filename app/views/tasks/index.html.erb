@@ -4,5 +4,6 @@
 <hr />
 <% @tasks.each do |task| %>
   <%= link_to "#{task.description}", task_path(task) %>
+  <%= button_to 'Delete', task, :method => :delete %>
   <br />
 <% end %>
