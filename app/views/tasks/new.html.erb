@@ -1,7 +1,15 @@
 <div>
+  <% if @task.errors.any? %>
+    <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
   <h3>Add new Task</h3>
   <%= form_for(@task) do |f| %>
-    Task description: <%= f.text_field :description %>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
     <br />
     <%= f.submit "Create Task" %>
   <% end %>

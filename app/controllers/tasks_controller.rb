@@ -8,8 +8,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create(task_params)
-    redirect_to task_path(@task)
+    @task = Task.new(task_params)
+    if @task.valid?
+      @task.save
+      redirect_to task_url(@task)
+    else
+      render 'new' # Renders the new page when task is not saved to the DB.
+    end
   end
 
   def show
