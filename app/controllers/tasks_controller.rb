@@ -9,7 +9,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create(task_params)
-    redirect_to tasks_path
+    redirect_to task_path(@task)
+  end
+
+  def show
+    @task = Task.find(params[:id])
   end
 
   private
