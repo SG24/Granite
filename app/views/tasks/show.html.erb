@@ -5,6 +5,15 @@
   <h3>
     <%= @task.id %>)
     <%= @task.description %>
+
+    <% if @task.attachment != nil %>
+      <% @task.attachment.avatars.each do |attachment| %>
+        <%= link_to attachment.filename %>
+        <%= link_to 'download', rails_blob_path(attachment, disposition: "attachment") %>
+        <br />
+      <% end %>
+    <% end %>
+
   </h3>
 
   Current Task State :
@@ -19,4 +28,16 @@
   <%= button_to "Done", task_status_url({ task_id: @task.id, state: "done" }), remote: true, date: { type: 'script' }, method: :patch %>
 
   <%= link_to 'Edit', edit_task_path(@task) %>
+</div>
+
+<div>
+  <h2><strong>Comments</strong></h2>
+    <% @comments.each do |comment| %>
+      <h3>
+        <%= comment.content %>
+      </h3>
+      <%= time_ago_in_words(comment.created_at) %><span> ago</span>
+      <br />
+    <% end %>
+  <%= render 'comments/form' %>
 </div>

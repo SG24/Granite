@@ -27,6 +27,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     authorize @task
+    @comments = @task.comments
   end
 
   def edit
@@ -51,6 +52,9 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :assignee_id)
+    params.require(:task)
+          .permit(:description,
+                  :assignee_id,
+                  attachment_attributes: [avatars: []])
   end
 end

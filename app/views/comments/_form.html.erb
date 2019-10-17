@@ -1,0 +1,8 @@
+<%= form_for ([@task, @task.comments.new]) do |f| %>
+  <br />
+  <%= f.label :content, "Add Comment" %>
+  <br />
+  <%= f.text_area :content %>
+  <br />
+  <%= f.submit "Submit" %>
+<% end %>
