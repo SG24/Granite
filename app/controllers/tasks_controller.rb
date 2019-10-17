@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = TaskPolicy::Scope.new(current_user, Task).resolve
+    # @tasks = policy_scope(Task)
     # alternatively: @tasks = policy_scope(Task)
   end
 
