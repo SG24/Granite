@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  enum state: %w[open in_progress done]
   belongs_to :user, foreign_key: :assignee_id
 
   before_validation :assign_description, unless: :description_present
