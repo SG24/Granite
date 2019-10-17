@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  belongs_to :user, foreign_key: :assignee_id
+
   before_validation :assign_description, unless: :description_present
 
   validates :description, presence: true

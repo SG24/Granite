@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :ensure_user_logged_in
+
   def index
     @tasks = Task.all
   end
@@ -8,7 +10,9 @@ class TasksController < ApplicationController
   end
 
   def create
+    @user = User.find(task_params[:assignee_id])
     @task = Task.new(task_params)
+    @task.creator_id = @current_user.id
     if @task.valid?
       @task.save
       redirect_to task_url(@task)
@@ -39,6 +43,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description)
+    params.require(:task).permit(:description, :assignee_id)
   end
 end
