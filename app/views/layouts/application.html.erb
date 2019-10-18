@@ -18,7 +18,7 @@
       <% if @current_user %>
         Hi <%= @current_user.name %>
         <br />
-        <%= link_to "Logout", logout_path, method: :delete %>
+        <%= link_to "Logout", logout_path, method: :delete, class: 'btn btn-primary btn-sm' %>
       <% end %>
       <%= yield %>
     </div>
