@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'react-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
